@@ -1,5 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const FormForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1% auto;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 400px;
+  height: 250px;
+`;
 
 const SmurfForm = () => {
   const [smurf, setSmurf] = useState({
@@ -25,9 +39,9 @@ const SmurfForm = () => {
   };
 
   return (
-    <form>
+    <FormForm>
+      <h2>Add a Smurf to your village!</h2>
       <label>
-        Smurf Name:
         <input
           required
           id="name"
@@ -36,11 +50,10 @@ const SmurfForm = () => {
           autoComplete="off"
           onChange={handleChange}
           value={smurf.name}
-          placeholder="Name"
+          placeholder="Smurf Name"
         />
       </label>
       <label>
-        Smurf Age:
         <input
           required
           id="age"
@@ -49,11 +62,10 @@ const SmurfForm = () => {
           autoComplete="off"
           onChange={handleChange}
           value={smurf.age}
-          placeholder="Age"
+          placeholder="Smurf Age"
         />
       </label>
       <label>
-        Smurf Height:
         <input
           required
           id="height"
@@ -62,13 +74,13 @@ const SmurfForm = () => {
           autoComplete="off"
           onChange={handleChange}
           value={smurf.height}
-          placeholder="Height(cm)"
+          placeholder="Smurf Height(cm)"
         />
       </label>
       <button type="submit" onClick={submitForm}>
         Submit Smurf
       </button>
-    </form>
+    </FormForm>
   );
 };
 

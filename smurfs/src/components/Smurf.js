@@ -1,5 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
+import styled from "styled-components";
+
+const SmurfDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1% auto;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 350px;
+  height: 200px;
+`;
+
+const FormForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
 
 const Smurf = props => {
   const [selected, setSelected] = useState(false);
@@ -45,11 +66,10 @@ const Smurf = props => {
   };
 
   return (
-    <div>
+    <SmurfDiv>
       {selected ? (
-        <form>
+        <FormForm>
           <label>
-            Smurf Name:
             <input
               id="name"
               type="text"
@@ -60,7 +80,6 @@ const Smurf = props => {
             />
           </label>
           <label>
-            Smurf Age:
             <input
               id="age"
               type="number"
@@ -71,7 +90,6 @@ const Smurf = props => {
             />
           </label>
           <label>
-            Smurf Height:
             <input
               id="height"
               type="text"
@@ -84,7 +102,7 @@ const Smurf = props => {
           <button type="submit" onClick={editSmurf}>
             Submit
           </button>
-        </form>
+        </FormForm>
       ) : (
         <div>
           <h3>{props.smurf.name}</h3>
@@ -92,9 +110,9 @@ const Smurf = props => {
           <p>Height: {props.smurf.height}</p>
         </div>
       )}
-      <button onClick={selectSmurf}>Edit</button>
+      <button onClick={selectSmurf}>{selected ? "Cancel Edit" : "Edit"}</button>
       <button onClick={deleteSmurf}>Delete</button>
-    </div>
+    </SmurfDiv>
   );
 };
 

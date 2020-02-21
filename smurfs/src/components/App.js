@@ -3,6 +3,19 @@ import axios from "axios";
 import { SmurfContext } from "../contexts/SmurfContext";
 import SmurfList from "./SmurfList";
 import SmurfForm from "./SmurfForm";
+import styled from "styled-components";
+
+const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+`;
+
+const TitleH1 = styled.h1`
+  font-size: 4rem;
+`;
 
 const App = () => {
   const [smurfs, setSmurfs] = useState([]);
@@ -22,8 +35,11 @@ const App = () => {
   return (
     <div className="App">
       <SmurfContext.Provider value={{ smurfs }}>
-        <SmurfForm />
-        <SmurfList />
+        <AppDiv>
+          <TitleH1>Smurf Village</TitleH1>
+          <SmurfForm />
+          <SmurfList />
+        </AppDiv>
       </SmurfContext.Provider>
     </div>
   );
