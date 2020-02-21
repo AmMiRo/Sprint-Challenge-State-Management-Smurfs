@@ -18,6 +18,7 @@ const TitleH1 = styled.h1`
 `;
 
 const App = () => {
+  const [change, setChange] = useState(true);
   const [smurfs, setSmurfs] = useState([]);
 
   useEffect(() => {
@@ -30,11 +31,11 @@ const App = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [change]);
 
   return (
     <div className="App">
-      <SmurfContext.Provider value={{ smurfs }}>
+      <SmurfContext.Provider value={{ smurfs, change, setChange }}>
         <AppDiv>
           <TitleH1>Smurf Village</TitleH1>
           <SmurfForm />

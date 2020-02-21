@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { SmurfContext } from "../contexts/SmurfContext";
 
 const SmurfDiv = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const FormForm = styled.form`
 `;
 
 const Smurf = props => {
+  const { change, setChange } = useContext(SmurfContext);
   const [selected, setSelected] = useState(false);
   const [smurf, setSmurf] = useState({
     id: props.smurf.id,
@@ -46,6 +48,7 @@ const Smurf = props => {
       .put(`http://localhost:3333/smurfs/${props.smurf.id}`, smurf)
       .then(res => {
         console.log("Edit Response", res);
+        setChange(!change);
       })
       .catch(err => {
         console.log("Edit Error", err);
@@ -59,6 +62,7 @@ const Smurf = props => {
       .delete(`http://localhost:3333/smurfs/${props.smurf.id}`)
       .then(res => {
         console.log("Delete Response", res);
+        setChange(!change);
       })
       .catch(err => {
         console.log("Delete Error", err);

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { SmurfContext } from "../contexts/SmurfContext";
 
 const FormForm = styled.form`
   display: flex;
@@ -16,6 +17,7 @@ const FormForm = styled.form`
 `;
 
 const SmurfForm = () => {
+  const { change, setChange } = useContext(SmurfContext);
   const [smurf, setSmurf] = useState({
     name: "",
     age: "",
@@ -32,10 +34,16 @@ const SmurfForm = () => {
       .post("http://localhost:3333/smurfs", smurf)
       .then(res => {
         console.log("Submit Response", res);
+        setChange(!change);
       })
       .catch(err => {
         console.log("Submit Error", err);
       });
+    setSmurf({
+      name: "",
+      age: "",
+      height: ""
+    });
   };
 
   return (
